@@ -1,8 +1,12 @@
 global.mat2 = require("../src/index");
 
 
-var a = mat2.rotate(mat2.create(), Math.PI * 0.5),
-    b = mat2.rotate(mat2.create(), Math.PI),
-    c = mat2.mul(a, b, mat2.create());
+var a = mat2.create(),
+    b = mat2.create(),
+    c = mat2.create();
+
+mat2.rotate(a, a, Math.PI * 0.5);
+mat2.rotate(b, b, Math.PI);
+mat2.mul(c, a, b);
 
 console.log(c);
