@@ -202,7 +202,7 @@ mat2.notEqual = function(a, b) {
     );
 };
 
-mat3.str = function(out) {
+mat2.str = function(out) {
     return (
         "Mat2[" + out[0] + ", " + out[2] + "]\n" +
         "     [" + out[1] + ", " + out[3] + "]"
