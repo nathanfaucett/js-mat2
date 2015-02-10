@@ -162,7 +162,7 @@ mat2.setRotation = function(out, angle) {
     out[2] = -s;
     out[3] = c;
 
-    return a;
+    return out;
 };
 
 mat2.getRotation = function(out) {
