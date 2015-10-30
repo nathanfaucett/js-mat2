@@ -1,4 +1,5 @@
-var mathf = require("mathf");
+var mathf = require("mathf"),
+    isNumber = require("is_number");
 
 
 var mat2 = exports;
@@ -10,10 +11,10 @@ mat2.ArrayType = typeof(Float32Array) !== "undefined" ? Float32Array : mathf.Arr
 mat2.create = function(m11, m12, m21, m22) {
     var out = new mat2.ArrayType(4);
 
-    out[0] = m11 !== undefined ? m11 : 1;
-    out[2] = m12 !== undefined ? m12 : 0;
-    out[1] = m21 !== undefined ? m21 : 0;
-    out[3] = m22 !== undefined ? m22 : 1;
+    out[0] = isNumber(m11) ? m11 : 1;
+    out[2] = isNumber(m12) ? m12 : 0;
+    out[1] = isNumber(m21) ? m21 : 0;
+    out[3] = isNumber(m22) ? m22 : 1;
 
     return out;
 };
@@ -41,10 +42,10 @@ mat2.clone = function(a) {
 
 mat2.set = function(out, m11, m12, m21, m22) {
 
-    out[0] = m11 !== undefined ? m11 : 1;
-    out[2] = m12 !== undefined ? m12 : 0;
-    out[1] = m21 !== undefined ? m21 : 0;
-    out[3] = m22 !== undefined ? m22 : 1;
+    out[0] = isNumber(m11) ? m11 : 1;
+    out[2] = isNumber(m12) ? m12 : 0;
+    out[1] = isNumber(m21) ? m21 : 0;
+    out[3] = isNumber(m22) ? m22 : 1;
 
     return out;
 };
@@ -211,3 +212,5 @@ mat2.str = function(out) {
         "     [" + out[1] + ", " + out[3] + "]"
     );
 };
+
+mat2.string = mat2.toString = mat2.str;
