@@ -167,7 +167,6 @@ mat2.setRotation = function(out, angle) {
 };
 
 mat2.getRotation = function(out) {
-
     return mathf.atan2(out[1], out[0]);
 };
 
@@ -178,38 +177,63 @@ mat2.rotate = function(out, a, angle) {
         m22 = a[3],
 
         s = mathf.sin(angle),
-        c = mathf.sin(angle);
+        c = mathf.cos(angle);
 
-    out[0] = m11 * c + m12 * s;
-    out[1] = m11 * -s + m12 * c;
-    out[2] = m21 * c + m22 * s;
-    out[3] = m21 * -s + m22 * c;
+    out[0] = m11 * c + m12 * -s;
+    out[2] = m21 * c + m22 * -s;
+
+    out[1] = m11 * s + m12 * c;
+    out[3] = m21 * s + m22 * c;
 
     return out;
 };
 
-mat2.equal = function(a, b) {
-    return !(
-        a[0] !== b[0] ||
-        a[1] !== b[1] ||
-        a[2] !== b[2] ||
-        a[3] !== b[3]
-    );
+mat2.fromMat32 = function(out, m) {
+
+    out[0] = m[0];
+    out[1] = m[1];
+    out[2] = m[2];
+    out[3] = m[3];
+
+    return out;
 };
 
-mat2.notEqual = function(a, b) {
-    return (
-        a[0] !== b[0] ||
-        a[1] !== b[1] ||
-        a[2] !== b[2] ||
-        a[3] !== b[3]
+mat2.fromMat3 = function(out, m) {
+
+    out[0] = m[0];
+    out[1] = m[1];
+    out[2] = m[3];
+    out[3] = m[4];
+
+    return out;
+};
+
+mat2.fromMat4 = function(out, m) {
+
+    out[0] = m[0];
+    out[1] = m[1];
+    out[2] = m[4];
+    out[3] = m[5];
+
+    return out;
+};
+
+mat2.equals = function(a, b, e) {
+    return !mat2.notEquals(a, b, e);
+};
+
+mat2.notEquals = function(a, b, e) {
+    return (!mathf.equals(a[0], b[0], e) ||
+        !mathf.equals(a[1], b[1], e) ||
+        !mathf.equals(a[2], b[2], e) ||
+        !mathf.equals(a[3], b[3], e)
     );
 };
 
 mat2.str = function(out) {
     return (
-        "Mat2[" + out[0] + ", " + out[2] + "]\n" +
-        "     [" + out[1] + ", " + out[3] + "]"
+        "Mat2[" + out[0] + ", " + out[2] + ",\n" +
+        "     " + out[1] + ", " + out[3] + "]"
     );
 };
 

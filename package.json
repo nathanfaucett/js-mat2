@@ -1,6 +1,6 @@
 {
   "name": "@nathanfaucett/mat2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "mat2 for the browser and node.js",
   "repository": {
     "type": "git",
